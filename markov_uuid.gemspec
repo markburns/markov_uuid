@@ -8,9 +8,10 @@ Gem::Specification.new do |gem|
   gem.version       = MarkovUuid::VERSION
   gem.authors       = ["Mark Burns"]
   gem.email         = ["markthedeveloper@gmail.com"]
-  gem.description   = %q{TODO: Write a gem description}
-  gem.summary       = %q{TODO: Write a gem summary}
-  gem.homepage      = ""
+  gem.description   = %q{People friendly readable UUIDs}
+  gem.summary       = %q{Easily generate random English-like UUIDs (or any other language)
+  that are more natural to convey to other people. E.g. over the phone, etc.}
+  gem.homepage      = "http://github.com/markburns/markov_uuid"
 
   gem.files         = `git ls-files`.split($/)
   gem.executables   = gem.files.grep(%r{^bin/}).map{ |f| File.basename(f) }
