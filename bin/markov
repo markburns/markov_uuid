@@ -1,0 +1,22 @@
+#!/usr/bin/env ruby
+#  Markov Chain Generator
+# based on the Python version by Gary Burd: http://gary.burd.info/2003/11/markov-chain-generator.html
+# Released into the public domain, please keep this notice intact
+# (c) InVisible GmbH
+# http://www.invisible.ch
+#
+
+require File.join File.expand_path(__FILE__), '../../lib/markov_uuid'
+
+file = ARGV[0]
+
+storage = MarkovUuid::Storage.new
+
+storage.load "markov.yaml" unless file
+
+if file
+  storage.add MarkovUuid::Markov.from_file file
+  storage.save "markov.yaml"
+end
+
+puts storage.to_words
