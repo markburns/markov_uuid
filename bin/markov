@@ -19,4 +19,7 @@ if file
   storage.save "markov.yaml"
 end
 
-puts storage.to_words
+(ARGV[1].to_i + 1).times do
+  storage.add MarkovUuid::Markov.from_file file
+  puts storage.to_words
+end
