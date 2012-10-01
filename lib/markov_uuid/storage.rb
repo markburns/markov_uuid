@@ -20,7 +20,7 @@ module MarkovUuid
 
       result = length.times.map do
         word = @data[key].sample rescue nil
-        key = new_key( key, word )
+        key = new_key key, word
         word
       end.compact
 

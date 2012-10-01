@@ -3,8 +3,8 @@ module MarkovUuid
     include KeySelector
     SEPARATOR = "#-#-"
 
-    def to_s i=8
-      @words.join("")[0..i.to_i]
+    def to_s i=32
+      @words.join("-")[0..i.to_i].gsub(/\A\w+-/,'').gsub(/-$/,"").gsub(/-\w+$/,"")
     end
 
     def initialize words
@@ -31,14 +31,14 @@ module MarkovUuid
       private
 
       def from_string l
-        l.gsub(/[^a-z]/i,'').split //
+        l.gsub(/[^a-z ]/i,'').split " "
       end
 
       def lines f
         content = File.read f
         c = content.length
         r = rand c
-        content[r-c .. r+c].downcase.split "\n"
+        content[r-c .. r+c].gsub(/\A\s\w+/,"").gsub(/\w+\s\z/,"").downcase.split "\n"
       end
     end
   end
