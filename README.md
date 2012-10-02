@@ -1,5 +1,9 @@
 # MarkovUuid
-
+# based on the Python version by Gary Burd: http://gary.burd.info/2003/11/markov-chain-generator.html
+# Released into the public domain, please keep this notice intact
+# (c) InVisible GmbH
+# http://www.invisible.ch
+#
 TODO: Write a gem description
 
 ## Installation

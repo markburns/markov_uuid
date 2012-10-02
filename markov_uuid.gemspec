@@ -13,6 +13,9 @@ Gem::Specification.new do |gem|
   that are more natural to convey to other people. E.g. over the phone, etc.}
   gem.homepage      = "http://github.com/markburns/markov_uuid"
 
+  gem.add_development_dependency 'rspec'
+  gem.add_development_dependency 'debugger'
+
   gem.files         = `git ls-files`.split($/)
   gem.executables   = gem.files.grep(%r{^bin/}).map{ |f| File.basename(f) }
   gem.test_files    = gem.files.grep(%r{^(test|spec|features)/})
