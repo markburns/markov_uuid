@@ -1,6 +1,7 @@
 module MarkovUuid
   class Chain < Hash
     SEPARATOR = "#-#-"
+    attr_reader :words
 
     class << self
       def from_file(f)
@@ -13,7 +14,7 @@ module MarkovUuid
     end
 
     def initialize words
-      add words
+      @words = words
     end
 
     def new_key(key, word)
@@ -22,7 +23,7 @@ module MarkovUuid
       word or key
     end
 
-    def add words
+    def add
       key = SEPARATOR
 
       words.each do |word|
