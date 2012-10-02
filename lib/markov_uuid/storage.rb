@@ -1,4 +1,4 @@
-require "YAML"
+require "yaml"
 require "fileutils"
 module MarkovUuid
   class Storage

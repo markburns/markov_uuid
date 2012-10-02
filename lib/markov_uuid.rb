@@ -4,5 +4,5 @@ require_relative './markov_uuid/markov'
 
 
 module MarkovUuid
-  VERSION = "0.0.2"
+  VERSION = "0.0.3"
 end
