@@ -15,29 +15,33 @@ module MarkovUuid
       @chain ||= MarkovUuid::Chain.new data
     end
 
-    def initialize cache_file, input_file
-      @cache_file, @input_file = cache_file, input_file
+    def initialize input_file, cache_file
+      @input_file, @cache_file =  input_file, cache_file
 
       preload_data
     end
 
+    #for testing
+    def file_klass
+      File
+    end
+
+    private
+
     def save
-      File.open(cache_file, "w"){|f| YAML.dump(@data, f) }
+      file_klass.open(cache_file, "w"){|f| YAML.dump(@data, f) }
     end
 
     def open
-      FileUtils.touch cache_file
-      File.open(cache_file) do |f|
+      file_klass.open(cache_file) do |f|
         @data = YAML.load f
       end
 
       @data
     end
 
-    private
-
     def data
-      @data ||= MarkovUuid::Chain.from_file input_file
+      @data ||= MarkovUuid::Chain.from_string file_klass.read(input_file)
     end
 
     def preload_data

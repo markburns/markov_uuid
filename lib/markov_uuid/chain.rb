@@ -4,8 +4,8 @@ module MarkovUuid
     attr_reader :words
 
     class << self
-      def from_file f
-        from_word_list(strip_punctuation File.read f)
+      def from_string string
+        from_word_list(strip_punctuation string)
       end
 
       def from_word_list words
@@ -13,8 +13,12 @@ module MarkovUuid
       end
 
       def strip_punctuation l
-        l.gsub(/[[:punct:]]/," ").gsub!('  ', ' ').split " "
+        l.gsub(/[[:punct:]]/," ").gsub('  ', ' ').split " "
       end
+    end
+
+    def initialize h={}
+      replace h
     end
 
     def add words

@@ -3,7 +3,7 @@ require File.expand_path('spec/spec_helper')
 require './lib/markov_uuid'
 
 describe MarkovUuid::Chain do
-  let(:file) do
+  let(:string) do
     <<-CONTENTS.gsub(/^\s*/, "")
       CHAPTER I. Down the Rabbit-Hole
 
@@ -34,16 +34,12 @@ describe MarkovUuid::Chain do
   end
 
   specify do
-    MarkovUuid::Chain.strip_punctuation(file).should == words
+    MarkovUuid::Chain.strip_punctuation(string).should == words
   end
 
   context 'from file' do
-    before do
-      File.stub(:read).and_return file
-    end
-
     specify do
-      chain = MarkovUuid::Chain.from_file ''
+      chain = MarkovUuid::Chain.from_string string
       #not sure how to test the randomness right now
       #so we can just check it's generating a list of words joined by '-'
       chain.uuid.should =~ /\A(\w+\-)+\w+\z/
