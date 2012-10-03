@@ -18,7 +18,8 @@ describe MarkovUuid::Chain do
 
   specify do
     s = "これは Some text with, random -?! Punctuation in"
-    MarkovUuid::Chain.strip_punctuation(s).should == %w(これは Some text with random Punctuation in)
+    MarkovUuid::Chain.strip_punctuation(s).should ==
+      %w(これは Some text with random Punctuation in)
   end
 
   let(:words) do
@@ -43,10 +44,13 @@ describe MarkovUuid::Chain do
 
     specify do
       chain = MarkovUuid::Chain.from_file ''
-      chain.to_words.split("-").each do |word|
+      #not sure how to test the randomness right now
+      #so we can just check it's generating a list of words joined by '-'
+      chain.uuid.should =~ /\A(\w+\-)+\w+\z/
+
+      chain.uuid.split("-").each do |word|
         words.should include word
       end
-
     end
   end
 end
