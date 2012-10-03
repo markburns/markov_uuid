@@ -33,9 +33,7 @@ module MarkovUuid
     end
 
     def open
-      file_klass.open(cache_file) do |f|
-        @data = YAML.load f
-      end
+      file_klass.open(cache_file) { |f| @data = YAML.load f }
 
       @data
     end
